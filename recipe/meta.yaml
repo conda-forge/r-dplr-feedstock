@@ -1,4 +1,4 @@
-{% set version = '1.7.0' %}
+{% set version = "1.7.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/dplR_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/dplR/dplR_{{ version }}.tar.gz
-  sha256: f946e697d64c0103e8d173cd7d02328c4f003d526294493eed6ce9cd4d9c9ffa
+  sha256: 927c66703e68eb8292ba9fbac2040d0813332addcb705e3a75001ef27f7ac4b5
 
 build:
-  merge_build_host: True  # [win]
+  merge_build_host: true  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
@@ -64,10 +64,9 @@ test:
 about:
   home: https://github.com/AndyBunn/dplR
   license: GPL (>= 2)
-  summary: Perform tree-ring analyses such as detrending, chronology building, and cross dating.  Read
-    and write standard file formats used in dendrochronology.
+  summary: Perform tree-ring analyses such as detrending, chronology building, and cross dating.  Read and write standard file formats used in dendrochronology.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
