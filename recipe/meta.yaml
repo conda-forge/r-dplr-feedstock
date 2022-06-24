@@ -14,7 +14,6 @@ source:
 
 build:
   merge_build_host: true  # [win]
-  skip: true  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
@@ -24,16 +23,20 @@ requirements:
   build:
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('m2w64_fortran') }}  # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-matrix >=1.0_3
     - r-r.utils >=1.32.1
     - r-xml >=2.1_0
+    - r-boot
     - r-digest >=0.2.3
     - r-lattice >=0.13_6
     - r-matrixstats >=0.50.2
@@ -48,6 +51,7 @@ requirements:
     - r-matrix >=1.0_3
     - r-r.utils >=1.32.1
     - r-xml >=2.1_0
+    - r-boot
     - r-digest >=0.2.3
     - r-lattice >=0.13_6
     - r-matrixstats >=0.50.2
