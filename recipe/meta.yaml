@@ -1,4 +1,4 @@
-{% set version = "1.7.3" %}
+{% set version = "1.7.4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/dplR_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/dplR/dplR_{{ version }}.tar.gz
-  sha256: 1b985e1663057b2e145044d470e1c05eda3a0d3cf2b0a7f9d77bfdd89e4cd009
+  sha256: c538be6028c51732e1cc46eba37b54cde5a8f8a4d00de1beadb115bede82d1be
 
 build:
   merge_build_host: true  # [win]
