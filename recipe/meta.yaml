@@ -1,4 +1,4 @@
-{% set version = "1.7.7" %}
+{% set version = "1.7.8" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,12 +9,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/dplR_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/dplR/dplR_{{ version }}.tar.gz
-  sha256: 0e35a4d2a22773499f9e4592d1a198a08c9842388ce1e5a35394990ed4cdb2bd
+  sha256: f78c33c1749110d3a3cef6bc6e1f02546b38d21735552e22a965370630672b4b
 
 build:
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: true  # [win]
-  number: 1
+  skip: true  # [ppc64le]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -33,6 +34,19 @@ requirements:
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-matrix >=1.0_3             # [build_platform != target_platform]
+    - r-r.utils >=1.32.1           # [build_platform != target_platform]
+    - r-xml >=2.1_0                # [build_platform != target_platform]
+    - r-boot                       # [build_platform != target_platform]
+    - r-digest >=0.2.3             # [build_platform != target_platform]
+    - r-lattice >=0.13_6           # [build_platform != target_platform]
+    - r-lme4                       # [build_platform != target_platform]
+    - r-matrixstats >=0.50.2       # [build_platform != target_platform]
+    - r-plyr >=1.8                 # [build_platform != target_platform]
+    - r-png >=0.1_2                # [build_platform != target_platform]
+    - r-signal                     # [build_platform != target_platform]
+    - r-stringi >=0.2_3            # [build_platform != target_platform]
+    - r-stringr >=0.4              # [build_platform != target_platform]
   host:
     - r-base
     - r-matrix >=1.0_3
@@ -41,6 +55,7 @@ requirements:
     - r-boot
     - r-digest >=0.2.3
     - r-lattice >=0.13_6
+    - r-lme4
     - r-matrixstats >=0.50.2
     - r-plyr >=1.8
     - r-png >=0.1_2
@@ -55,6 +70,7 @@ requirements:
     - r-boot
     - r-digest >=0.2.3
     - r-lattice >=0.13_6
+    - r-lme4
     - r-matrixstats >=0.50.2
     - r-plyr >=1.8
     - r-png >=0.1_2
@@ -71,7 +87,6 @@ about:
   home: https://github.com/AndyBunn/dplR
   license: GPL-2.0-or-later
   summary: Perform tree-ring analyses such as detrending, chronology building, and cross dating.  Read and write standard file formats used in dendrochronology.
-  license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
